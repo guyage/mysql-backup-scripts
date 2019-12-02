@@ -3,7 +3,7 @@
 ## 物理备份和逻辑备份脚本
 * xtrabackup文件夹为物理备份
   * 物理备份可配置备份到本地或远端服务器(不落地备份)，采用流备份，科并行效率高
-  * 流备份解压,需安装qpress
+  * 流备份解压,需安装qpress，安装包在文件夹里，解压即可(tar xvf qpress-11-linux-x64.tar && cp qpress /usr/bin)
   ```bash 
   xbstream -x < xxxxxx.xbstream -C ./restore 
   cd restore
