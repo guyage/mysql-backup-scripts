@@ -6,7 +6,7 @@
   * 流备份解压,需安装qpress
   ```bash 
   xbstream -x < xxxxxx.xbstream -C ./restore 
-  cd restore && 
+  cd restore
   for f in `find ./ -iname "*\.qp"`; do qpress -dT2 $f  $(dirname $f) && rm -f $f; done
   ```
 * mydumper文件夹为逻辑备份
