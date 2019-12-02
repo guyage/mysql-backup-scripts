@@ -1,0 +1,72 @@
+##############################################################
+#How to connect to mysqld [socket:socketPath or port:portNum]#
+##############################################################  
+connection=port:3306
+mysqlUser=backup
+mysqlPwd=backup
+mysqlHost=127.0.0.1
+mysqlPort=3306
+defaultsFile=/etc/my.cnf
+backupdbname=test
+backuptype=physical
+##############################################################
+#xtrabackup's installation directory                         #
+##############################################################
+basedir=/app/percona-xtrabackup
+threads=16
+##############################################################
+slaveWaitTime=300
+##############################################################
+#slaveOpt=something or slaveOpt=                             #
+##############################################################
+slaveOpt="--slave-info --safe-slave-backup --safe-slave-backup-timeout=$slaveWaitTime"
+#slaveOpt=
+##############################################################
+#lock wait timeout                                           #
+##############################################################
+lockWaitOpt="--lock-wait-timeout=180 --lock-wait-threshold=120 --lock-wait-query-type=all"
+killLongOpt="--kill-long-queries-timeout=180 --kill-long-query-type=select"
+lockOpt="$lockWaitOpt $killLongOpt"
+##############################################################
+#full or incremental                                         #
+##############################################################
+backupType=full
+#backupType=incremental
+##############################################################
+#whether backup secondary index or not                       #
+#noSecIndex="--compact" or noSecIndex=                       #
+##############################################################
+#noSecIndex=--compact
+noSecIndex=
+##############################################################
+#stream type                                                 #
+##############################################################
+stream="--stream=xbstream"
+##############################################################
+#compress                                                    #
+##############################################################
+compress="--compress --compress-threads=16"
+##############################################################
+#remote backup or not,Yes or No                               #
+##############################################################
+#remoteBackup=No
+remoteBackup=Yes
+##############################################################
+#remote host on which backup stored                          #
+##############################################################
+dstHost=1.1.1.1
+dstPort=22
+dstUser=root
+dstDir=/backup/
+xbStream=/app/xtrabackup/bin/xbstream
+##############################################################
+#local directory where backup stored                         #
+##############################################################
+backupDir=/backup
+##############################################################
+#whether check backup or not,1 or 0                          #
+##############################################################
+checkBak=1
+#toUser=ArcticWolf
+toUser="@all:guyage"
+retries=6
