@@ -3,7 +3,12 @@
 ## 物理备份和逻辑备份脚本
 * xtrabackup文件夹为物理备份
   * 物理备份可配置备份到本地或远端服务器(不落地备份)，采用流备份，科并行效率高
-  * 流备份解压,需安装qpress(1.xbstream -x < xxxxxx.xbstream -C ./restore 2.cd restore && for f in `find ./ -iname "*\.qp"`; do qpress -dT2 $f  $(dirname $f) && rm -f $f; done)
+  * 流备份解压,需安装qpress
+  ```bash 
+  xbstream -x < xxxxxx.xbstream -C ./restore 
+  cd restore && 
+  for f in `find ./ -iname "*\.qp"`; do qpress -dT2 $f  $(dirname $f) && rm -f $f; done
+  ```
 * mydumper文件夹为逻辑备份
   * 逻辑备份可配置备份到本地或远端服务器，备份远端为先备份到本地，再通过rsync传至远端服务器
 * delete_obsolete_backup文件夹为删除指定保留日期文件删除脚本
